@@ -28,7 +28,7 @@ def take_a_guess():
             assert user_guess >=1
             break
         except ValueError:
-            print('Whoops!\nPlease enter an integer.')
+            print('Whoops!\nThat is not an integer!.Please enter an integer.')
         except AssertionError:
             print("Whoops!\n  You entered a number smaller than 1. Please enter an integer greater than 1!")
         
