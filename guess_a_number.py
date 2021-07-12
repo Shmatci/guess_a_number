@@ -28,7 +28,7 @@ def take_a_guess():
             assert user_guess >=1
             break
         except ValueError:
-            print('Whoops!\nYou entered a real number, please enter an integer.')
+            print('Whoops!\nPlease enter an integer.')
         except AssertionError:
             print("Whoops!\n  You entered a number smaller than 1. Please enter an integer greater than 1!")
         
@@ -88,15 +88,16 @@ random_num = pick_random_num()
 play_game()
 
 
-print("Would you like to play again?")
-play_again = input("Enter y for yes or n for no: ")
-if play_again.lower()=="y":
-    guesses = 0
-    random_num = pick_random_num()
-    play_game()
-else:
-    print("Thank you for playing!")
-
+while True:
+    print("Would you like to play again?")
+    play_again = input("Enter y for yes or n for no: ")
+    if play_again.lower() == "y":
+        guesses = 0
+        random_num = pick_random_num()
+        play_game()
+    else:
+        print("Thank you for playing!")
+        break
  
 
  
