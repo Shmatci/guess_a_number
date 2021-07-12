@@ -25,9 +25,12 @@ def take_a_guess():
     while True:
         try:
             user_guess = int(input("Please enter your guess: "))
+            assert user_guess >=1
             break
         except ValueError:
-            print("Whoops!\n You entered a real number. Please enter an integer!")
+            print('Whoops!\nYou entered a real number, please enter an integer.')
+        except AssertionError:
+            print("Whoops!\n  You entered a number smaller than 1. Please enter an integer greater than 1!")
         
     return user_guess
 
