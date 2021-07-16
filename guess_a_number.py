@@ -28,7 +28,7 @@ def take_a_guess():
             assert user_guess >=1
             break
         except ValueError:
-            print('Whoops!\nThat is not an integer!.Please enter an integer.')
+            print('Whoops!\nThat is not an integer! Please enter an integer.')
         except AssertionError:
             print("Whoops!\n  You entered a number smaller than 1. Please enter an integer greater than 1!")
         
@@ -50,7 +50,14 @@ def level_difficulty(level):
 def greeting():
     print("Hi! You are going to try to guess a number I come up with!")
     print("Choose difficulty level:")
-    level = input("Enter h for hard, m for medium or e for easy:")
+    while True:
+        try:
+            level = input("Enter h for hard, m for medium or e for easy:")
+            assert level.lower() == 'h' or level.lower() == 'e' or level.lower() == 'm'
+            break
+        except AssertionError:
+            print('Whoops!\nThat is not a valid option! Please enter only the options offered.')
+        
     upper_bound = level_difficulty(level)
     print(f"I am thinking of a number between 1 and {upper_bound}")
     
