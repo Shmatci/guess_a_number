@@ -8,20 +8,31 @@ Created on Sun Apr 11 17:38:42 2021
 import random as rnd
 
 
-
 def pick_random_num():
-    """pick a random number -
-    using a function, computer picks a random number and stores it in a variable to later
-    compare with players guessed number."""
+    """
+    Chooses random integer greater than 1 and smaller than upper bound.
+    
+    Returns
+    -------
+    int
+        Number which the player will have to guess.
+    """
     upper_bound = greeting()
     return rnd.randint(1, upper_bound)
     
 
-
 def take_a_guess():
-    """take an int input from user - 
-    ask user to put some random int input that you are going to use
-    forward, put it in a variable"""
+    """
+    Prompts user for an integer.
+    
+    If user does not enter an integer or the integer entered is smaller than 1, he will be 
+    prompted again.
+
+    Returns
+    -------
+    int
+        The postive integer proposed by the user.
+    """
     while True:
         try:
             user_guess = int(input("Please enter your guess: "))
@@ -35,7 +46,23 @@ def take_a_guess():
     return user_guess
 
 
-def level_difficulty(level):
+def level_difficulty(level:str)->int:
+    """
+    Chooses upper bound based on 'level' provided by player.
+    
+    There are three possible upper bounds, based on hard, medium or easy difficulty.
+    The upper bounds are 100, 50 and 20 respectively.
+    
+    Parameters
+    ----------
+    level:
+        One letter representation of possible levels (h,m,e).
+    
+    Returns
+    -------
+    int
+        Upper bound on the range of numbers from which the user has to choose.
+    """
     hard = 100
     medium = 50
     easy = 20
@@ -46,8 +73,17 @@ def level_difficulty(level):
     else:
         upper_bound = easy
     return upper_bound
-    
+
+
 def greeting():
+    """
+    Greets the user and provides options to choose difficulty.
+
+    Returns
+    -------
+    int
+        Returns the upper bound to the range of possible guesses.
+    """
     print("Hi! You are going to try to guess a number I come up with!")
     print("Choose difficulty level:")
     level = input("Enter h for hard, m for medium or e for easy:")
@@ -57,12 +93,21 @@ def greeting():
     return upper_bound
     
     
-    
 def play_game():
-    """if guessed number is not same as random number, guess again and 
-    check until you find solution."""  
+    """
+    Starts one round of guesses.
+    Calls itself if the number guessed is not right
+
+    Provides feedback on user's guess (higher or lower than desired number).
+
+    Returns
+    -------
+    function
+        Returns itself if guess is not right
+    None
+        If guessed correctly.
+    """  
      
-    
     global guesses
     # Greet user
     guess = take_a_guess()
@@ -84,7 +129,6 @@ def play_game():
 # Start
 guesses = 0
 random_num = pick_random_num()
-# print("*** this is the number you are looking for: (",random_num,") ***")
 play_game()
 
 
